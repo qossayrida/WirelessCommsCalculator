@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/WirelessCommsCalculator/static/css/main.f855e6bc.css",
+    "main.js": "/WirelessCommsCalculator/static/js/main.69c4c0a0.js",
+    "static/js/453.201cd004.chunk.js": "/WirelessCommsCalculator/static/js/453.201cd004.chunk.js",
+    "static/media/logo.svg": "/WirelessCommsCalculator/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/WirelessCommsCalculator/index.html",
+    "main.f855e6bc.css.map": "/WirelessCommsCalculator/static/css/main.f855e6bc.css.map",
+    "main.69c4c0a0.js.map": "/WirelessCommsCalculator/static/js/main.69c4c0a0.js.map",
+    "453.201cd004.chunk.js.map": "/WirelessCommsCalculator/static/js/453.201cd004.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.69c4c0a0.js"
+  ]
+}
