@@ -7,7 +7,7 @@
 /*!
 
 =========================================================
-* Now UI Dashboard React - v1.5.2
+* Now UI HomePage React - v1.5.2
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/now-ui-dashboard-react
