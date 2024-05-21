@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/WirelessCommsCalculator/static/css/main.f855e6bc.css",
-    "main.js": "/WirelessCommsCalculator/static/js/main.103baebe.js",
-    "static/js/453.201cd004.chunk.js": "/WirelessCommsCalculator/static/js/453.201cd004.chunk.js",
-    "static/media/logo.svg": "/WirelessCommsCalculator/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/WirelessCommsCalculator/static/css/main.35c90639.css",
+    "main.js": "/WirelessCommsCalculator/static/js/main.d59e7aee.js",
+    "static/media/nucleo-outline.eot": "/WirelessCommsCalculator/static/media/nucleo-outline.56814a6b7240045e1494.eot",
+    "static/media/nucleo-outline.ttf": "/WirelessCommsCalculator/static/media/nucleo-outline.1102ed9b2d16dccdec05.ttf",
+    "static/media/nucleo-outline.woff": "/WirelessCommsCalculator/static/media/nucleo-outline.1a1036e643f97457ec5f.woff",
+    "static/media/nucleo-outline.woff2": "/WirelessCommsCalculator/static/media/nucleo-outline.802141dd0dcc63b21cbb.woff2",
+    "static/media/library.svg": "/WirelessCommsCalculator/static/media/library.d96c8354b51f5e1a5bc53f6951e1a969.svg",
     "index.html": "/WirelessCommsCalculator/index.html",
-    "main.f855e6bc.css.map": "/WirelessCommsCalculator/static/css/main.f855e6bc.css.map",
-    "main.103baebe.js.map": "/WirelessCommsCalculator/static/js/main.103baebe.js.map",
-    "453.201cd004.chunk.js.map": "/WirelessCommsCalculator/static/js/453.201cd004.chunk.js.map"
+    "main.35c90639.css.map": "/WirelessCommsCalculator/static/css/main.35c90639.css.map",
+    "main.d59e7aee.js.map": "/WirelessCommsCalculator/static/js/main.d59e7aee.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.103baebe.js"
+    "static/css/main.35c90639.css",
+    "static/js/main.d59e7aee.js"
   ]
 }
