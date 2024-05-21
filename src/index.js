@@ -11,7 +11,7 @@ import AdminLayout from "./layouts/Admin.js";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-    <BrowserRouter>
+    <BrowserRouter basename="/WirelessCommsCalculator">
         <Routes>
             <Route path="/admin/*" element={<AdminLayout />} />
             <Route path="*" element={<Navigate to="/admin/home-page" replace />} />
