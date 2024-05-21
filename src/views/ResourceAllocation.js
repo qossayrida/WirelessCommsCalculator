@@ -4,7 +4,7 @@ import React from "react";
 // core components
 import PanelHeader from "../components/PanelHeader/PanelHeader.js";
 
-function Notifications() {
+function ResourceAllocation() {
 
   return (
       <>
@@ -16,4 +16,4 @@ function Notifications() {
   );
 }
 
-export default Notifications;
+export default ResourceAllocation;

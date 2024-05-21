@@ -1,7 +1,7 @@
 import React from "react";
 import PanelHeader from "../components/PanelHeader/PanelHeader";
 
-function Dashboard() {
+function CellularSystemDesign() {
   return (
       <>
         <PanelHeader size="sm" />
@@ -12,4 +12,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default CellularSystemDesign;
