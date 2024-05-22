@@ -10,6 +10,7 @@ body{
     position: relative;
     background: $white-color;
 }
+
 /* Animations */
 .nav-pills .nav-link,
 .navbar,
@@ -45,14 +46,6 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     height: 1px;
     border-radius: 1px;
     background: $white-bg;
-
-    & + .button-bar{
-        margin-top: 7px;
-    }
-
-    &:nth-child(2){
-        width: 17px;
-    }
 }
 
 .caret{
