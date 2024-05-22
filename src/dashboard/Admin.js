@@ -5,7 +5,6 @@ import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import HiddenButton from "../components/HiddenButton.js";
 import Footer from "../components/Footer.js";
 import Sidebar from "../components/Sidebar.js";
-import FixedPlugin from "../components/FixedPlugin";
 import routes from "../routes";
 
 var ps;
@@ -58,10 +57,7 @@ function Admin(props) {
         </Routes>
         <Footer fluid />
       </div>
-      <FixedPlugin
-        bgColor={backgroundColor}
-        handleColorClick={handleColorClick}
-      />
+
     </div>
   );
 }

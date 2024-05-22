@@ -8,6 +8,7 @@ function PanelHeader(props) {
         "panel-header " +
         (props.size !== undefined ? "panel-header-" + props.size : "")
       }
+
     >
       {props.content}
     </div>

@@ -246,18 +246,7 @@
     &[data-color="blue"]{
       @include sidebar-color($info-color);
     }
-    &[data-color="green"]{
-      @include sidebar-color($success-color);
-    }
-    &[data-color="orange"]{
-      @include sidebar-color($orange-color);
-    }
-    &[data-color="red"]{
-      @include sidebar-color($danger-color);
-    }
-    &[data-color="yellow"]{
-      @include sidebar-color($warning-color);
-    }
+
 }
 
 .visible-on-sidebar-regular{
@@ -278,83 +267,4 @@
             background: rgba(200, 200, 200, 0.2);
         }
     }
-}
-
-
-.main-panel{
-    position: relative;
-    float: right;
-    width: $sidebar-width;
-    // width: 100%;
-    background-color: $light-gray;
-    background-color: #ebecf1;
-
-    @include transition (0.50s, cubic-bezier(0.685, 0.0473, 0.346, 1));
-
-    > .content{
-        padding: 0 30px 30px;
-        min-height: calc(100vh - 123px);
-        margin-top: -30px;
-    }
-
-    > .navbar{
-        margin-bottom: 0;
-    }
-
-
-    .header{
-        margin-bottom: 50px;
-    }
-}
-
-
-.perfect-scrollbar-on{
-  .sidebar,
-  .main-panel{
-      height: 100%;
-      max-height: 100%;
-  }
-}
-
-
-@media (min-width: 991px) {
-  .sidebar{
-    display: block;
-    box-shadow: $sidebar-box-shadow;
-  }
-}
-
-.panel-header {
-  height: 260px;
-  padding-top: 80px;
-  padding-bottom: 45px;
-  background: #141E30;  /* fallback for old browsers */
-  background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
-  background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
-  position: relative;
-  overflow: hidden;
-
-  .header{
-    .title{
-      color: $white-color;
-    }
-    .category{
-      max-width: 600px;
-      color: $opacity-5;
-      margin: 0 auto;
-      font-size: 13px;
-
-      a{
-        color: $white-color;
-      }
-    }
-  }
-}
-
-.panel-header-sm{
-  height: 135px;
-}
-
-.panel-header-lg{
-  height: 380px
 }

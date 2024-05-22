@@ -7,15 +7,14 @@
 // Core CSS
 @import "styles/buttons";
 @import "styles/inputs";
-@import "styles/footers";
+@import "styles/footers-and-panel-header";
 
 @import "styles/typography";
 @import "now-ui-dashboard/misc";
 @import "now-ui-dashboard/nucleo-outline";
-@import "now-ui-dashboard/sidebar-and-main-panel";
-
-@import "now-ui-dashboard/fixed-plugin";
+@import "styles/sidebar";
 
 
-@import "now-ui-dashboard/responsive";
+
+@import "styles/responsive";
 
