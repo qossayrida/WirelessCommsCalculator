@@ -5,7 +5,7 @@ import {
 } from "reactstrap";
 
 
-function DemoNavbar() {
+function HiddenButton() {
 
   const sidebarToggle = React.useRef();
 
@@ -52,4 +52,4 @@ function DemoNavbar() {
   );
 }
 
-export default DemoNavbar;
+export default HiddenButton;

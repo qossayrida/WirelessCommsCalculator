@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./assets/scss/now-ui-dashboard.scss?v1.5.0";
 
 
-import AdminLayout from "./layouts/Admin.js";
+import AdminLayout from "./dashboard/Admin.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

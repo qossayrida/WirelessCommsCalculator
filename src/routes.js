@@ -1,9 +1,9 @@
-import HomePage from "./views/HomePage.js";
-import ResourceAllocation from "./views/ResourceAllocation.js";
-import SignalProcessing from "./views/SignalProcessing.js";
-import MultipleAccessThroughput from "./views/MultipleAccessThroughput.js";
-import TableList from "./views/TransmissionPower.js";
-import CellularSystemDesign from "./views/CellularSystemDesign";
+import HomePage from "./pages/HomePage.js";
+import ResourceAllocation from "./pages/ResourceAllocation.js";
+import SignalProcessing from "./pages/SignalProcessing.js";
+import MultipleAccessThroughput from "./pages/MultipleAccessThroughput.js";
+import TableList from "./pages/TransmissionPower.js";
+import CellularSystemDesign from "./pages/CellularSystemDesign";
 
 
 var dashRoutes = [

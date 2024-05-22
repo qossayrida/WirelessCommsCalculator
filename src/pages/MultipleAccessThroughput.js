@@ -4,7 +4,7 @@ import React from "react";
 import { Card, CardHeader, CardBody} from "reactstrap";
 
 // core components
-import PanelHeader from "../components/PanelHeader/PanelHeader.js";
+import PanelHeader from "../components/PanelHeader.js";
 
 function MultipleAccessThroughput() {
   return (

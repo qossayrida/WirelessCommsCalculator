@@ -1,5 +1,5 @@
 import React from "react";
-import PanelHeader from "../components/PanelHeader/PanelHeader";
+import PanelHeader from "../components/PanelHeader";
 
 function CellularSystemDesign() {
   return (

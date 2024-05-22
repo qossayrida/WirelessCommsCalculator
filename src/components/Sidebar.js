@@ -1,11 +1,10 @@
-
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Nav } from "reactstrap";
 
 import PerfectScrollbar from "perfect-scrollbar";
 
-import logo from "../../library.svg";
+import logo from "../assets/images/library.svg";
 
 var ps;
 

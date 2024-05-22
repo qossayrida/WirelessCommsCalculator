@@ -2,10 +2,10 @@ import React from "react";
 import PerfectScrollbar from "perfect-scrollbar";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 
-import DemoNavbar from "../components/Navbars/DemoNavbar.js";
-import Footer from "../components/Footer/Footer.js";
-import Sidebar from "../components/Sidebar/Sidebar.js";
-import FixedPlugin from "../components/FixedPlugin/FixedPlugin";
+import HiddenButton from "../components/HiddenButton.js";
+import Footer from "../components/Footer.js";
+import Sidebar from "../components/Sidebar.js";
+import FixedPlugin from "../components/FixedPlugin";
 import routes from "../routes";
 
 var ps;
@@ -39,7 +39,7 @@ function Admin(props) {
     <div className="wrapper">
       <Sidebar {...props} routes={routes} backgroundColor={backgroundColor} />
       <div className="main-panel" ref={mainPanel}>
-        <DemoNavbar {...location}/>
+        <HiddenButton {...location}/>
         <Routes>
           {routes.map((prop, key) => {
             return (

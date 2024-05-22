@@ -2,7 +2,7 @@
 import React from "react";
 
 // core components
-import PanelHeader from "../components/PanelHeader/PanelHeader.js";
+import PanelHeader from "../components/PanelHeader.js";
 
 function ResourceAllocation() {
 

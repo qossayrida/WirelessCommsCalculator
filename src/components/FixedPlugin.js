@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 function FixedPlugin(props) {
   const [classes, setClasses] = React.useState("dropdown");
