@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "./assets/scss/now-ui-dashboard.scss?v1.5.0";
+import "./assets/scss/dashboard.scss";
 
 
 import AdminLayout from "./dashboard/Admin.js";

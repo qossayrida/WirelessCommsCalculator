@@ -63,12 +63,6 @@ p{
     }
 }
 
-// i.fa{
-//     font-size: 18px;
-//     position: relative;
-//     top: 1px;
-// }
-
 .title{
     font-weight: $font-weight-bold;
 
@@ -128,46 +122,4 @@ a.text-danger:focus, a.text-danger:hover {
 .text-gray,
 a.text-gray:focus, a.text-gray:hover{
     color: $light-gray !important;
-}
-
-
-.blockquote{
-    border-left: none;
-    border: 1px solid $default-color;
-    padding: 20px;
-    font-size: $font-size-blockquote;
-    line-height: 1.8;
-
-    small{
-        color: $default-color;
-        font-size: $font-size-small;
-        text-transform: uppercase;
-    }
-
-    &.blockquote-primary{
-        border-color: $primary-color;
-        color: $primary-color;
-
-        small{
-            color: $primary-color;
-        }
-    }
-
-    &.blockquote-danger{
-        border-color: $danger-color;
-        color: $danger-color;
-
-        small{
-            color: $danger-color;
-        }
-    }
-
-    &.blockquote-white{
-        border-color: $opacity-8;
-        color: $white-color;
-
-        small{
-            color: $opacity-8;
-        }
-    }
 }

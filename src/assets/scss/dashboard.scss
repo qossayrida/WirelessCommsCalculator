@@ -2,21 +2,20 @@
 @import 'now-ui-dashboard/mixins';
 
 
-@import "now-ui-dashboard/plugins/plugin-perfect-scrollbar";
+@import "now-ui-dashboard/mixins/plugin-perfect-scrollbar";
 
 // Core CSS
-@import "now-ui-dashboard/buttons";
-@import "now-ui-dashboard/inputs";
+@import "styles/buttons";
+@import "styles/inputs";
+@import "styles/footers";
 
-@import "now-ui-dashboard/typography";
+@import "styles/typography";
 @import "now-ui-dashboard/misc";
 @import "now-ui-dashboard/nucleo-outline";
 @import "now-ui-dashboard/sidebar-and-main-panel";
-@import "now-ui-dashboard/footers";
+
 @import "now-ui-dashboard/fixed-plugin";
 
 
 @import "now-ui-dashboard/responsive";
 
-// react
-@import "now-ui-dashboard/react/react-differences";
