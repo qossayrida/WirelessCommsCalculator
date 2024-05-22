@@ -54,7 +54,7 @@ function ResourceAllocation() {
                         <h5 className="title">Resource Allocation Calculator</h5>
                         <p className="category">Calculate the number of bits and rate for resource elements, OFDM symbols, resource blocks, and maximum transmission using parallel resource blocks</p>
                     </CardHeader>
-                    <CardBody>
+                    <CardBody className="centered-card-body">
                         <Form>
                             <FormGroup>
                                 <Label for="bandwidth">Bandwidth (Hz)</Label>

@@ -5,11 +5,13 @@
     font-size: $font-size-small;
     line-height: $line-height;
     border: none;
-    margin: 10px 1px;
     background-color: #FF5D29FF;
     border-radius: $border-radius-small;
     padding: $padding-btn-vertical $padding-btn-horizontal;
     cursor: pointer;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
 
     &:hover,
     &:focus,

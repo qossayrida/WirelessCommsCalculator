@@ -38,7 +38,7 @@ function SignalProcessing() {
                         <h5 className="title">Signal Processing Calculator</h5>
                         <p className="category">Calculate the number of bits and rate for various components</p>
                     </CardHeader>
-                    <CardBody>
+                    <CardBody className="centered-card-body">
                         <Form>
                             <FormGroup>
                                 <Label for="bandwidth">Bandwidth (Hz)</Label>

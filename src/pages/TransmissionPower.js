@@ -36,7 +36,7 @@ function RegularTables() {
               <p className="category">Calculate transmitted power based on the transmitter and receiver specifications</p>
             </CardHeader>
 
-            <CardBody>
+            <CardBody className="centered-card-body">
               <Form>
                 <FormGroup>
                   <Label for="inDb">Are the values in dB?</Label>
