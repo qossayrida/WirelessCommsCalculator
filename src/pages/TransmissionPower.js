@@ -42,7 +42,7 @@ function RegularTables() {
                   <Label for="inDb">Are the values in dB?</Label>
                   <Input
                       type="select"
-                      id="inDb"
+                      className="form-control"
                       value={inDb}
                       onChange={(e) => setInDb(e.target.value === "true")}
                   >
