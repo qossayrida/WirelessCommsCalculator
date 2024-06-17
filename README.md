@@ -19,6 +19,11 @@ This repository contains an online calculator for various communication system p
 5. **Cellular System Design**:
     - Assists in designing a cellular system based on user inputs.
 
+## Deployment
+
+The project is deployed and can be accessed at [https://qossayrida.github.io/WirelessCommsCalculator](https://qossayrida.github.io/WirelessCommsCalculator).
+
+
 ## Setup
 
 To run this project locally, follow these steps:
