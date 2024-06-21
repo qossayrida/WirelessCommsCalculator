@@ -75,6 +75,7 @@ function SignalProcessing() {
                     <CardBody className="centered-card-body">
                         {alert && <Alert color="danger">{alert}</Alert>}
                     </CardBody>
+
                     <CardBody className="centered-card-body">
                         <Form>
 
