@@ -88,6 +88,7 @@ function SignalProcessing() {
                                     onChange={(e) => setBandwidth(e.target.value)}
                                     placeholder="Enter bandwidth in Hz"
                                 />
+
                             </FormGroup>
                             <FormGroup>
                                 <Label for="samplingFreq">Sampling Frequency (Hz)</Label>

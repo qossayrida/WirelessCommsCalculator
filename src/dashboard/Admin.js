@@ -5,11 +5,12 @@ import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import HiddenButton from "../components/HiddenButton.js";
 import Footer from "../components/Footer.js";
 import Sidebar from "../components/Sidebar.js";
-import routes from "../routes";
+import routes from "../routes.js";
 
 var ps;
 
 function Admin(props) {
+
   const location = useLocation();
   const [backgroundColor, setBackgroundColor] = React.useState("blue");
   const mainPanel = React.useRef();
@@ -30,9 +31,6 @@ function Admin(props) {
     document.scrollingElement.scrollTop = 0;
     mainPanel.current.scrollTop = 0;
   }, [location]);
-  const handleColorClick = (color) => {
-    setBackgroundColor(color);
-  };
 
   return (
     <div className="wrapper">
@@ -55,7 +53,9 @@ function Admin(props) {
             element={<Navigate to="/admin/dashboard" replace />}
           />
         </Routes>
+
         <Footer fluid />
+
       </div>
 
     </div>

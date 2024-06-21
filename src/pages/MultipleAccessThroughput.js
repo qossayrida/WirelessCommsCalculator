@@ -1,41 +1,61 @@
 import React, { useState } from "react";
-import { Card, CardBody, CardHeader, Form, FormGroup, Label, Input, Button } from "reactstrap";
-import PanelHeader from "../components/PanelHeader.js";
+import { Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+import PanelHeader from "../components/PanelHeader";
 
-function MultipleAccessThroughput() {
+function ThroughputCalculator() {
     const [technique, setTechnique] = useState("");
-    const [parameters, setParameters] = useState({});
-    const [throughput, setThroughput] = useState(null);
+    const [bandwidth, setBandwidth] = useState("");
+    const [maxSignalPropagationTime, setMaxSignalPropagationTime] = useState("");
+    const [frameSize, setFrameSize] = useState("");
+    const [frameRate, setFrameRate] = useState("");
+    const [results, setResults] = useState(null);
+    const [alert, setAlert] = useState(null);
 
     const handleCalculate = () => {
-        let throughputValue;
-
-        switch (technique) {
-            case "TDMA":
-                const { timeSlots, frameDuration } = parameters;
-                throughputValue = (timeSlots / frameDuration) * 100;
-                break;
-            case "FDMA":
-                const { bandwidth, channelBandwidth } = parameters;
-                throughputValue = (channelBandwidth / bandwidth) * 100;
-                break;
-            case "CDMA":
-                const { users, spreadingFactor } = parameters;
-                throughputValue = (users / spreadingFactor) * 100;
-                break;
-            default:
-                throughputValue = 0;
+        if (!technique || !bandwidth || !maxSignalPropagationTime || !frameSize || !frameRate) {
+            setAlert("All fields are required.");
+            return;
         }
 
-        setThroughput(throughputValue);
-    };
+        const bandwidthValue = parseFloat(bandwidth);
+        const maxSignalPropagationTimeValue = parseFloat(maxSignalPropagationTime) * 1e-6; // convert microseconds to seconds
+        const frameSizeValue = parseFloat(frameSize);
+        const frameRateValue = parseFloat(frameRate);
 
-    const handleParameterChange = (e) => {
-        const { name, value } = e.target;
-        setParameters({
-            ...parameters,
-            [name]: parseFloat(value)
-        });
+        const T = frameSizeValue / bandwidthValue;
+        const alpha = maxSignalPropagationTimeValue / T;
+        const G = T * frameRateValue;
+
+        let throughput;
+
+        switch (technique) {
+            case "pure ALOHA":
+                throughput = frameRateValue * T * Math.exp(-2 * G * T);
+                break;
+            case "slotted ALOHA":
+                throughput = frameRateValue * T * Math.exp(-G * T);
+                break;
+            case "unslotted nonpersistent CSMA":
+                throughput = (G * Math.exp(-2 * alpha * T)) / (G * (1 + 2 * alpha) + Math.exp(-alpha * G));
+                break;
+            case "slotted nonpersistent CSMA":
+                throughput = (alpha * G * Math.exp(-2 * alpha * T)) / (1 - Math.exp(-alpha * G ) + alpha);
+                break;
+            case "unslotted 1-persistent CSMA":
+                throughput = (G * (1 + G + alpha * G * (1 + G + (alpha * G) / 2)) * Math.exp(-G * (1 + 2 * alpha))) /
+                    (G * (1 + 2 * alpha) - (1 - Math.exp(-alpha * G)) + (1 + alpha * G) * Math.exp(-G * (1 + alpha)));
+                break;
+            case "slotted 1-persistent CSMA":
+                throughput = (G * (1 + alpha - Math.exp(-alpha * G)) * Math.exp(-G * (1 + alpha))) /
+                    ((1 + alpha) * (1 - Math.exp(-alpha * G)) + alpha * Math.exp(-G * (1 + alpha)));
+                break;
+            default:
+                setAlert("Invalid multiple access technique selected.");
+                return;
+        }
+
+        setAlert(null);
+        setResults({ T, alpha, G, throughput });
     };
 
     return (
@@ -44,115 +64,86 @@ function MultipleAccessThroughput() {
             <div className="content">
                 <Card>
                     <CardHeader>
-                        <h5 className="title">Multiple Access Throughput Calculator</h5>
-                        <p className="category">Calculate the throughput in percent for different multiple access techniques</p>
+                        <h5 className="title">Multiple Access Techniques Throughput Calculator</h5>
+                        <p className="category">Calculate the throughput for various multiple access techniques</p>
                     </CardHeader>
 
                     <CardBody className="centered-card-body">
+                        {alert && <Alert color="danger">{alert}</Alert>}
+                    </CardBody>
+
+                    <CardBody className="centered-card-body">
                         <Form>
-                            <FormGroup >
+                            <FormGroup>
                                 <Label for="technique">Multiple Access Technique</Label>
                                 <Input
                                     type="select"
+                                    id="technique"
                                     className="form-control"
                                     value={technique}
                                     onChange={(e) => setTechnique(e.target.value)}
                                 >
                                     <option value="">Select Technique</option>
-                                    <option value="TDMA">TDMA</option>
-                                    <option value="FDMA">FDMA</option>
-                                    <option value="CDMA">CDMA</option>
+                                    <option value="pure ALOHA">Pure ALOHA</option>
+                                    <option value="slotted ALOHA">Slotted ALOHA</option>
+                                    <option value="unslotted nonpersistent CSMA">Unslotted Nonpersistent CSMA</option>
+                                    <option value="slotted nonpersistent CSMA">Slotted Nonpersistent CSMA</option>
+                                    <option value="unslotted 1-persistent CSMA">Unslotted 1-persistent CSMA</option>
+                                    <option value="slotted 1-persistent CSMA">Slotted 1-persistent CSMA</option>
                                 </Input>
                             </FormGroup>
-
-                            {technique === "TDMA" && (
-                                <>
-                                    <FormGroup >
-                                        <Label for="timeSlots">Number of Time Slots</Label>
-                                        <Input
-                                            type="number"
-                                            id="timeSlots"
-                                            name="timeSlots"
-                                            value={parameters.timeSlots || ""}
-                                            onChange={handleParameterChange}
-                                            placeholder="Enter number of time slots"
-                                        />
-                                    </FormGroup>
-                                    <FormGroup >
-                                        <Label for="frameDuration">Frame Duration (ms)</Label>
-                                        <Input
-                                            type="number"
-                                            id="frameDuration"
-                                            name="frameDuration"
-                                            value={parameters.frameDuration || ""}
-                                            onChange={handleParameterChange}
-                                            placeholder="Enter frame duration in milliseconds"
-                                        />
-                                    </FormGroup>
-                                </>
-                            )}
-
-                            {technique === "FDMA" && (
-                                <>
-                                    <FormGroup >
-                                        <Label for="bandwidth">Total Bandwidth (Hz)</Label>
-                                        <Input
-                                            type="number"
-                                            id="bandwidth"
-                                            name="bandwidth"
-                                            value={parameters.bandwidth || ""}
-                                            onChange={handleParameterChange}
-                                            placeholder="Enter total bandwidth in Hz"
-                                        />
-                                    </FormGroup>
-                                    <FormGroup >
-                                        <Label for="channelBandwidth">Channel Bandwidth (Hz)</Label>
-                                        <Input
-                                            type="number"
-                                            id="channelBandwidth"
-                                            name="channelBandwidth"
-                                            value={parameters.channelBandwidth || ""}
-                                            onChange={handleParameterChange}
-                                            placeholder="Enter channel bandwidth in Hz"
-                                        />
-                                    </FormGroup>
-                                </>
-                            )}
-
-                            {technique === "CDMA" && (
-                                <>
-                                    <FormGroup >
-                                        <Label for="users">Number of Users</Label>
-                                        <Input
-                                            type="number"
-                                            id="users"
-                                            name="users"
-                                            value={parameters.users || ""}
-                                            onChange={handleParameterChange}
-                                            placeholder="Enter number of users"
-                                        />
-                                    </FormGroup>
-                                    <FormGroup >
-                                        <Label for="spreadingFactor">Spreading Factor</Label>
-                                        <Input
-                                            type="number"
-                                            id="spreadingFactor"
-                                            name="spreadingFactor"
-                                            value={parameters.spreadingFactor || ""}
-                                            onChange={handleParameterChange}
-                                            placeholder="Enter spreading factor"
-                                        />
-                                    </FormGroup>
-                                </>
-                            )}
-
+                            <FormGroup>
+                                <Label for="bandwidth">Bandwidth (Hz)</Label>
+                                <Input
+                                    type="number"
+                                    id="bandwidth"
+                                    value={bandwidth}
+                                    onChange={(e) => setBandwidth(e.target.value)}
+                                    placeholder="Enter bandwidth in Hz"
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="maxSignalPropagationTime">Maximum Signal Propagation Time in us</Label>
+                                <Input
+                                    type="number"
+                                    id="maxSignalPropagationTime"
+                                    value={maxSignalPropagationTime}
+                                    onChange={(e) => setMaxSignalPropagationTime(e.target.value)}
+                                    placeholder="Enter propagation time in microseconds"
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="frameSize">Frame Size (bits)</Label>
+                                <Input
+                                    type="number"
+                                    id="frameSize"
+                                    value={frameSize}
+                                    onChange={(e) => setFrameSize(e.target.value)}
+                                    placeholder="Enter frame size in bits"
+                                />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="frameRate">Frame Rate (g)</Label>
+                                <Input
+                                    type="number"
+                                    id="frameRate"
+                                    value={frameRate}
+                                    onChange={(e) => setFrameRate(e.target.value)}
+                                    placeholder="Enter frame rate"
+                                />
+                            </FormGroup>
                             <Button color="primary" onClick={handleCalculate}>Calculate</Button>
                         </Form>
+                    </CardBody>
 
-                        {throughput !== null && (
+                    <CardBody className="centered-card-body">
+                        {results && (
                             <div className="results">
                                 <h5>Results</h5>
-                                <p>Throughput: {throughput.toFixed(2)}%</p>
+                                <p>T (Frame Time): {results.T.toFixed(6)} s</p>
+                                <p>Alpha (𝛼): {results.alpha.toFixed(6)}</p>
+                                <p>G: {results.G.toFixed(6)}</p>
+                                <p>Throughput: {results.throughput.toFixed(6)} bits/s</p>
                             </div>
                         )}
                     </CardBody>
@@ -162,4 +153,4 @@ function MultipleAccessThroughput() {
     );
 }
 
-export default MultipleAccessThroughput;
+export default ThroughputCalculator;

@@ -11,10 +11,12 @@ var ps;
 function Sidebar(props) {
   const sidebar = React.useRef();
   const location = useLocation();
+
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
+
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(sidebar.current, {
@@ -28,6 +30,7 @@ function Sidebar(props) {
       }
     };
   });
+
   return (
     <div className="sidebar" data-color={props.backgroundColor}>
 
