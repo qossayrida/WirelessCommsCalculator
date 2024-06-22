@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 import PanelHeader from "../components/PanelHeader";
-import { erlangBTable, probabilities } from '../data/erlangData.js';
+import {cellClusters, erlangBTable, probabilities } from '../data/erlangData.js';
 import Diagram from '../components/Diagram';
 
 function CellularSystemDesign() {
@@ -49,30 +49,40 @@ function CellularSystemDesign() {
 
         const trafficLoadPerCell = trafficLoadWholeSystem / numCells;
 
-        const channelValue =5;
+        const A = Math.pow((6 * Math.pow(10, sirValue / 10)), 2 / pathLossExponentValue) / 3;
 
-        if (channelValue < 1 || channelValue > 150) {
+        // Find NumberOfCells satisfying the equation
+        let NumberOfCells = null;
+        for (let i = 1 ; i < cellClusters.length ; i++) {
+                if (cellClusters[i]> A) {
+                    NumberOfCells = cellClusters[i];
+                    break;
+                }
+        }
+
+        const trafficRow = erlangBTable.find(row => {
+            const probabilityIndex = probabilities.findIndex(p => p.value === probabilityValue);
+            return row.values[probabilityIndex] >= trafficLoadPerCell;
+        });
+
+        const minChannels = trafficRow ? trafficRow.channels : null;
+        const minCarriers = Math.ceil(minChannels / timeslotsValue);
+
+        if (minChannels < 1 || minChannels > 150) {
             setAlert("Number of channels must be between 1 and 150.");
             return;
         }
         setAlert(null);
-
-        const row = erlangBTable.find(row => row.channels === channelValue);
-        const probabilityIndex = probabilities.findIndex(p => p.value === probabilityValue);
-
-        if (!row || probabilityIndex === -1) {
-            setAlert("Invalid input.");
-            return;
-        }
-
-        const trafficInErlangs = row.values[probabilityIndex];
 
         setResult({
             maxDistance: maxDistance.toFixed(2),
             maxCellSize: maxCellSize.toFixed(2),
             numCells,
             trafficLoadWholeSystem: trafficLoadWholeSystem.toFixed(2),
-            trafficLoadPerCell: trafficLoadPerCell.toFixed(2)
+            trafficLoadPerCell: trafficLoadPerCell.toFixed(2),
+            NumberOfCells,
+            minChannels,
+            minCarriers
         });
     };
 
@@ -83,7 +93,7 @@ function CellularSystemDesign() {
                 <Card>
                     <CardHeader>
                         <h5 className="title">Cellular System Design</h5>
-                        <p className="category">Calculate traffic in Erlangs using Erlang B table</p>
+                        <p className="category">Design a cellular system by calculating essential parameters such as cell size, traffic load, and the number of channels using the Erlang B table.</p>
                     </CardHeader>
 
 
@@ -244,12 +254,15 @@ function CellularSystemDesign() {
                         {result && (
                             <div className="results">
                                 <h5>Results</h5>
-                                <p>Maximum Distance Between Transmitter and Receiver: {result.maxDistance} meters</p>
+                                <p>Maximum Distance Between Tx and Rx: {result.maxDistance} meters</p>
                                 <p>Maximum Cell Size: {result.maxCellSize} Km²</p>
                                 <p>Number of Cells in the Service Area: {result.numCells}</p>
                                 <p>Traffic Load in the Whole Cellular
                                     System: {result.trafficLoadWholeSystem} Erlangs</p>
                                 <p>Traffic Load in Each Cell: {result.trafficLoadPerCell} Erlangs</p>
+                                <p>Number of cells in cluster: {result.NumberOfCells} cells</p>
+                                <p>Minimum Number of Channels: {result.minChannels}</p>
+                                <p>Minimum Number of Carriers: {result.minCarriers}</p>
                             </div>
                         )}
                     </CardBody>

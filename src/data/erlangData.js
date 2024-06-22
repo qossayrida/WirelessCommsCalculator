@@ -174,6 +174,9 @@ export const probabilities = [
 ];
 
 
+export const cellClusters = [
+    0, 1, 3, 4, 7, 9, 12, 13, 16, 19, 21, 25, 27, 28, 31, 37, 39, 48, 49, 61, 75
+];
 
 
 /*

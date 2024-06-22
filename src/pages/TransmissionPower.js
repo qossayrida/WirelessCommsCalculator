@@ -134,7 +134,7 @@ function RegularTables() {
       ptValue = ebNoValue + noiseTemperatureValue + noiseFigureTotalValue + dataRateValue + linkMarginValue + pathLossValue + otherLossesValue + fadeMarginValue + antennaFeedLineLossValue - transmitAmplifierGainValue - receiverAmplifierGainValue - transmitAntennaGainValue - receiveAntennaGainValue - boltzmannConstantDb;
     } else {
       const ebNo = Math.pow(10,(ebNoValue/10.0));
-      ptValue = (ebNo * noiseTemperatureValue * noiseFigureTotalValue * dataRateValue * linkMarginValue * pathLossValue * otherLossesValue * fadeMarginValue * antennaFeedLineLossValue) / (transmitAmplifierGainValue * receiverAmplifierGainValue * transmitAntennaGainValue * receiveAntennaGainValue * boltzmannConstant);
+      ptValue = (ebNo * noiseTemperatureValue * noiseFigureTotalValue * dataRateValue * linkMarginValue * pathLossValue * otherLossesValue * fadeMarginValue * antennaFeedLineLossValue * boltzmannConstant) / (transmitAmplifierGainValue * receiverAmplifierGainValue * transmitAntennaGainValue * receiveAntennaGainValue);
     }
 
     setPt(ptValue);
