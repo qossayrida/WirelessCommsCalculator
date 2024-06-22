@@ -2,7 +2,7 @@ import React from 'react';
 import { Stage, Layer, Rect, Text, Arrow, Line } from 'react-konva';
 
 const Diagram = () => {
-    const width = 800;
+    const width = 550;
     const height = 195;
     return (
         <Stage width={width} height={height}>
@@ -26,7 +26,7 @@ const Diagram = () => {
                 <Text x={260} y={80} text="Ts1" fontSize={16} />
                 <Text x={470} y={80} text="Tsn" fontSize={16} />
 
-                <Text x={550} y={50} text="Number of Timeslots per Carrier" fontSize={16} />
+                {/*<Text x={550} y={50} text="Number of Timeslots per Carrier" fontSize={16} />*/}
 
                 {/* Lower FDMA box */}
                 <Rect x={200} y={160} width={300} height={30} stroke="#444444" />
