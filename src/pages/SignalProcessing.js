@@ -25,6 +25,11 @@ function SignalProcessing() {
         const channelEncoderRateValue = parseFloat(channelEncoderRate);
         const interleaverBitsValue = parseInt(interleaverBits, 10);
 
+        if (bandwidth < 0 || samplingFreq < 0 || quantizerBits < 0 || encoderCompressionRate < 0 || channelEncoderRate < 0 || interleaverBits < 0) {
+            setAlert("There is an invalid value");
+            return;
+        }
+
         if (samplingFreqValue < bandwidthValue * 2) {
             setAlert("Sampling frequency must be at least twice the bandwidth (Nyquist rate).");
             setResults(null);

@@ -44,6 +44,8 @@ function ResourceAllocation() {
         const bitsPerResourceBlockTotal = ofdmSymbolsValue * bitsPerOfdmSymbol;
         const maxTransmissionRate = (4 * bitsPerResourceBlockTotal) / resourceBlockDurationValue;
 
+
+
         setResults({
             bitsPerResourceBlock,
             bitsPerOfdmSymbol,
