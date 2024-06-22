@@ -59,8 +59,9 @@ const modulationData = {
   ],
 };
 
-function RegularTables() {
-  const [inDb, setInDb] = useState(false);
+
+function TransmissionPower() {
+  const [unit, setUnit] = useState("dB");
   const [pathLoss, setPathLoss] = useState("");
   const [dataRate, setDataRate] = useState("");
   const [transmitAntennaGain, setTransmitAntennaGain] = useState("");
@@ -113,7 +114,7 @@ function RegularTables() {
     const getEbNoForBer = (ber, modulation) => {
       const data = modulationData[modulation];
       for (let i = 0; i < data.length - 1; i++) {
-        if (ber === data[i].BER )
+        if (ber === data[i].BER)
           return data[i].EbNo;
       }
       return null; // Return null if no match found
@@ -130,13 +131,16 @@ function RegularTables() {
     const boltzmannConstant = 1.38 * Math.pow(10, -23);
 
     let ptValue;
-    if (inDb) {
+    if (unit === "dB") {
       ptValue = ebNoValue + noiseTemperatureValue + noiseFigureTotalValue + dataRateValue + linkMarginValue + pathLossValue + otherLossesValue + fadeMarginValue + antennaFeedLineLossValue - transmitAmplifierGainValue - receiverAmplifierGainValue - transmitAntennaGainValue - receiveAntennaGainValue - boltzmannConstantDb;
+    } else if (unit === "dBm") {
+      ptValue = ebNoValue + noiseTemperatureValue + noiseFigureTotalValue + dataRateValue + linkMarginValue + pathLossValue + otherLossesValue + fadeMarginValue + antennaFeedLineLossValue - transmitAmplifierGainValue - receiverAmplifierGainValue - transmitAntennaGainValue - receiveAntennaGainValue - boltzmannConstantDb - 90;
     } else {
-      const ebNo = Math.pow(10,(ebNoValue/10.0));
+      const ebNo = Math.pow(10, (ebNoValue / 10.0));
       ptValue = (ebNo * noiseTemperatureValue * noiseFigureTotalValue * dataRateValue * linkMarginValue * pathLossValue * otherLossesValue * fadeMarginValue * antennaFeedLineLossValue * boltzmannConstant) / (transmitAmplifierGainValue * receiverAmplifierGainValue * transmitAntennaGainValue * receiveAntennaGainValue);
     }
 
+    setAlert(null);
     setPt(ptValue);
   };
 
@@ -156,15 +160,16 @@ function RegularTables() {
 
             <CardBody className="centered-card-body">
               <FormGroup>
-                <Label for="inDb">Are the values in dB?</Label>
+                <Label for="unit">Choose the unit ?</Label>
                 <Input
                     type="select"
                     className="form-control"
-                    value={inDb}
-                    onChange={(e) => setInDb(e.target.value === "true")}
+                    value={unit}
+                    onChange={(e) => setUnit(e.target.value)}
                 >
-                  <option value="false">No</option>
-                  <option value="true">Yes</option>
+                  <option value="W">Unit less</option>
+                  <option value="dB">dB</option>
+                  <option value="dBm">dBm</option>
                 </Input>
               </FormGroup>
             </CardBody>
@@ -340,7 +345,7 @@ function RegularTables() {
                   </Input>
                 </FormGroup>
               </div>
-                <Button color="primary" onClick={handleCalculate}>Calculate</Button>
+              <Button color="primary" onClick={handleCalculate}>Calculate</Button>
 
             </CardBody>
 
@@ -348,7 +353,7 @@ function RegularTables() {
               {pt !== null && (
                   <div className="results">
                     <h5>Results</h5>
-                    <p>Total Power Transmit (Pt): {pt} {inDb ? "dB" : "W"}</p>
+                    <p>Total Power Transmit (Pt): {pt} {unit === "dB" ? "dB" : unit === "dBm" ? "dBm" : "W"}</p>
                   </div>
               )}
             </CardBody>
@@ -358,4 +363,4 @@ function RegularTables() {
   );
 }
 
-export default RegularTables;
+export default TransmissionPower;

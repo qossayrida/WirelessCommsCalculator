@@ -2,7 +2,7 @@ import HomePage from "./pages/HomePage.js";
 import ResourceAllocation from "./pages/ResourceAllocation.js";
 import SignalProcessing from "./pages/SignalProcessing.js";
 import MultipleAccessThroughput from "./pages/MultipleAccessThroughput.js";
-import TableList from "./pages/TransmissionPower.js";
+import TransmissionPower from "./pages/TransmissionPower.js";
 import CellularSystemDesign from "./pages/CellularSystemDesign";
 
 
@@ -32,7 +32,7 @@ var dashRoutes = [
     path: "/transmission-power",
     name: "Transmission Power",
     icon: "business_chart-bar-32",
-    component: <TableList />,
+    component: <TransmissionPower />,
     layout: "/admin",
   },
   {
