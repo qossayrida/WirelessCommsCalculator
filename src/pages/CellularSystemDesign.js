@@ -67,6 +67,7 @@ function CellularSystemDesign() {
 
         const minChannels = trafficRow ? trafficRow.channels : null;
         const minCarriers = Math.ceil(minChannels / timeslotsValue);
+        const minCarriersForAllSystem = minCarriers * NumberOfCells;
 
         if (minChannels < 1 || minChannels > 150) {
             setAlert("Number of channels must be between 1 and 150.");
@@ -82,7 +83,8 @@ function CellularSystemDesign() {
             trafficLoadPerCell: trafficLoadPerCell.toFixed(2),
             NumberOfCells,
             minChannels,
-            minCarriers
+            minCarriers,
+            minCarriersForAllSystem
         });
     };
 
@@ -261,8 +263,9 @@ function CellularSystemDesign() {
                                     System: {result.trafficLoadWholeSystem} Erlangs</p>
                                 <p>Traffic Load in Each Cell: {result.trafficLoadPerCell} Erlangs</p>
                                 <p>Number of cells in cluster: {result.NumberOfCells} cells</p>
-                                <p>Minimum Number of Channels: {result.minChannels}</p>
-                                <p>Minimum Number of Carriers: {result.minCarriers}</p>
+                                <p>Minimum Number of Channels per cell: {result.minChannels}</p>
+                                <p>Minimum Number of Carriers per cell: {result.minCarriers}</p>
+                                <p>Minimum Number of Carriers for system: {result.minCarriersForAllSystem}</p>
                             </div>
                         )}
                     </CardBody>
